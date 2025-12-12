@@ -58,6 +58,15 @@ public class P_Login extends javax.swing.JPanel {
         txtPass.setBackground(new java.awt.Color(0, 0, 0, 0)); // Nền hoàn toàn trong suốt
         txtPass.setFont(new java.awt.Font("iCiel Mijas", 0, 14));
         txtPass.setForeground(new java.awt.Color(60, 60, 60));
+        
+        // Tùy chỉnh nút toggle password
+        togglePass.setBorder(null);
+        togglePass.setContentAreaFilled(false);
+        togglePass.setFont(new java.awt.Font("Segoe UI", 0, 14));
+        togglePass.setText("*");
+        togglePass.setForeground(new java.awt.Color(104, 88, 219));
+        togglePass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        togglePass.setFocusPainted(false);
     }
 
     /**
@@ -73,6 +82,7 @@ public class P_Login extends javax.swing.JPanel {
         jLayeredPane1 = new javax.swing.JLayeredPane();
         txtUserName = new javax.swing.JTextField();
         txtPass = new javax.swing.JPasswordField();
+        togglePass = new javax.swing.JButton();
         cmdRegister = new javax.swing.JButton();
         cmdLogin = new swing.Button();
 
@@ -94,8 +104,18 @@ public class P_Login extends javax.swing.JPanel {
             }
         });
 
+        togglePass.setText("👁");
+        togglePass.setBorder(null);
+        togglePass.setContentAreaFilled(false);
+        togglePass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                togglePassActionPerformed(evt);
+            }
+        });
+
         jLayeredPane1.setLayer(txtUserName, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtPass, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(togglePass, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -104,7 +124,10 @@ public class P_Login extends javax.swing.JPanel {
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-                    .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                        .addGap(6, 6, 6)
+                        .addComponent(togglePass, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(46, 46, 46))
         );
         jLayeredPane1Layout.setVerticalGroup(
@@ -113,7 +136,9 @@ public class P_Login extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(togglePass, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -178,6 +203,20 @@ public class P_Login extends javax.swing.JPanel {
         
     }//GEN-LAST:event_cmdRegisterActionPerformed
 
+    private void togglePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_togglePassActionPerformed
+        togglePasswordVisibility(txtPass, togglePass);
+    }//GEN-LAST:event_togglePassActionPerformed
+
+    private void togglePasswordVisibility(javax.swing.JPasswordField passField, javax.swing.JButton toggleBtn) {
+        if (passField.getEchoChar() == 0) {
+            passField.setEchoChar('•');
+            toggleBtn.setText("👁");
+        } else {
+            passField.setEchoChar((char) 0);
+            toggleBtn.setText("👁‍🗨");
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private swing.Button cmdLogin;
@@ -186,5 +225,6 @@ public class P_Login extends javax.swing.JPanel {
     private swing.PictureBox pictureBox1;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtUserName;
+    private javax.swing.JButton togglePass;
     // End of variables declaration//GEN-END:variables
 }

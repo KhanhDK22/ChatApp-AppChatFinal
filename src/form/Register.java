@@ -69,6 +69,24 @@ public class Register extends javax.swing.JPanel {
         txtRepass.setBackground(new java.awt.Color(0, 0, 0, 0)); // Nền hoàn toàn trong suốt
         txtRepass.setFont(new java.awt.Font("iCiel Mijas", 0, 14));
         txtRepass.setForeground(new java.awt.Color(60, 60, 60));
+        
+        // Tùy chỉnh nút toggle password
+        togglePass.setBorder(null);
+        togglePass.setContentAreaFilled(false);
+        togglePass.setFont(new java.awt.Font("Segoe UI", 0, 14));
+        togglePass.setText("*");
+        togglePass.setForeground(new java.awt.Color(104, 88, 219));
+        togglePass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        togglePass.setFocusPainted(false);
+        
+        // Tùy chỉnh nút toggle confirm password
+        toggleRepass.setBorder(null);
+        toggleRepass.setContentAreaFilled(false);
+        toggleRepass.setFont(new java.awt.Font("Segoe UI", 0, 14));
+        toggleRepass.setText("*");
+        toggleRepass.setForeground(new java.awt.Color(104, 88, 219));
+        toggleRepass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        toggleRepass.setFocusPainted(false);
     }
 
     /**
@@ -86,6 +104,8 @@ public class Register extends javax.swing.JPanel {
         txtUserName = new javax.swing.JTextField();
         txtPass = new javax.swing.JPasswordField();
         txtRepass = new javax.swing.JPasswordField();
+        togglePass = new javax.swing.JButton();
+        toggleRepass = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cmdBackLogin = new javax.swing.JButton();
 
@@ -105,11 +125,31 @@ public class Register extends javax.swing.JPanel {
         txtPass.setBorder(null);
 
         txtRepass.setBorder(null);
+        
+        togglePass.setText("*");
+        togglePass.setBorder(null);
+        togglePass.setContentAreaFilled(false);
+        togglePass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                togglePassActionPerformed(evt);
+            }
+        });
+        
+        toggleRepass.setText("*");
+        toggleRepass.setBorder(null);
+        toggleRepass.setContentAreaFilled(false);
+        toggleRepass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toggleRepassActionPerformed(evt);
+            }
+        });
 
         jLayeredPane1.setLayer(cmdRegistry, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtUserName, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtPass, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(togglePass, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtRepass, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(toggleRepass, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -119,8 +159,14 @@ public class Register extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPass)
-                    .addComponent(txtRepass)))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(togglePass, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addComponent(txtRepass, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(toggleRepass, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
                 .addGap(98, 98, 98)
                 .addComponent(cmdRegistry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -131,9 +177,13 @@ public class Register extends javax.swing.JPanel {
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
-                .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                    .addComponent(togglePass, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
-                .addComponent(txtRepass, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(txtRepass, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(toggleRepass, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(cmdRegistry, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                 .addGap(35, 35, 35))
@@ -174,6 +224,24 @@ public class Register extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void togglePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_togglePassActionPerformed
+        togglePasswordVisibility(txtPass, togglePass);
+    }//GEN-LAST:event_togglePassActionPerformed
+
+    private void toggleRepassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleRepassActionPerformed
+        togglePasswordVisibility(txtRepass, toggleRepass);
+    }//GEN-LAST:event_toggleRepassActionPerformed
+
+    private void togglePasswordVisibility(javax.swing.JPasswordField passField, javax.swing.JButton toggleBtn) {
+        if (passField.getEchoChar() == 0) {
+            passField.setEchoChar('•');
+            toggleBtn.setText("*");
+        } else {
+            passField.setEchoChar((char) 0);
+            toggleBtn.setText("*");
+        }
+    }
+
     private void cmdBackLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBackLoginActionPerformed
          PublicEvent.getInstance().getEventLogin().goLogin();
     }//GEN-LAST:event_cmdBackLoginActionPerformed
@@ -189,6 +257,14 @@ public class Register extends javax.swing.JPanel {
         }else if(!password.equals(confirmPassword)){
             txtPass.grabFocus();
         }else{
+            // Yêu cầu mật khẩu: >10 ký tự, bắt đầu bằng chữ cái, chứa chữ số và dấu gạch nối
+            // String pwdPattern = "^(?=.{11,}$)(?=.*\\d)(?=.*-)[A-Za-z][A-Za-z0-9-]*$";
+            // if (!password.matches(pwdPattern)) {
+            //     jLabel1.setVisible(true);
+            //     jLabel1.setText("Mật khẩu phải >10 ký tự, bắt đầu bằng chữ cái, chứa chữ số và dấu '-' ");
+            //     txtPass.grabFocus();
+            //     return;
+            // }
             Model_Register data = new Model_Register(userName, password);
             PublicEvent.getInstance().getEventLogin().Register(data, new EventMessage() {                @Override
                 public void callMessage(Model_Message message) {
@@ -215,5 +291,7 @@ public class Register extends javax.swing.JPanel {
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JPasswordField txtRepass;
     private javax.swing.JTextField txtUserName;
+    private javax.swing.JButton togglePass;
+    private javax.swing.JButton toggleRepass;
     // End of variables declaration//GEN-END:variables
 }
